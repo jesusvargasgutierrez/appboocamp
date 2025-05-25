@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="streven">
+        <item>-Seleccione una opcion-</item>
+        <item>MARTES 17:30 PM A 18:30 PM</item>
+    </string-array>
+</resources>

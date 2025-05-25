@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="strmorning">
+        <item>-Seleccione una opcion-</item>
+        <item>LUNES 10:30 AM A 11:20 AM</item>
+    </string-array>
+</resources>

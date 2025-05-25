@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="strcourts">
+        <item>-Seleccione una opcion-</item>
+        <item>Cancha1</item>
+    </string-array>
+</resources>
