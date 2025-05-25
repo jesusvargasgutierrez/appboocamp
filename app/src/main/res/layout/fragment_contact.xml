@@ -26,5 +26,39 @@
                 android:text="CONTACTO" />
         </TableRow>
 
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <EditText
+                android:id="@+id/eTxtMreception"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="start|top"
+                android:inputType="textMultiLine"
+                android:background="@color/white"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:text="Recepcion \n +52 6141234567 EXT 101 \n +52 6141234567" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <EditText
+                android:id="@+id/eTxtMadmin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="start|top"
+                android:inputType="textMultiLine"
+                android:background="@color/white"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:text="Recepcion \n +52 6141234567 EXT 101 \n +52 6141234567" />
+        </TableRow>
+
     </TableLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
