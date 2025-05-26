@@ -10,23 +10,17 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.countryapp.R;
 import com.example.countryapp.databinding.FragmentContactBinding;
 
 public class ContactFragment extends Fragment {
 
     private FragmentContactBinding binding;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        ContactViewModel contactViewModel =
-                new ViewModelProvider(this).get(ContactViewModel.class);
+    public View onCreateView(@NonNull LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_contact, container, false);
 
-        binding = FragmentContactBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-
-        final TextView textView = binding.textSlideshow;
-        contactViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        return root;
+        return view;
     }
 
     @Override

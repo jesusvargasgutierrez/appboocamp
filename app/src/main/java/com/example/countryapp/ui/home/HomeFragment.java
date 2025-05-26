@@ -65,7 +65,7 @@ public class HomeFragment extends Fragment {
                 FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-                fragmentTransaction.replace(R.id.homefragment, new ClassReservationFragment());
+                fragmentTransaction.replace(R.id.homefragment, new ReservationscourtsFragment());
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }
