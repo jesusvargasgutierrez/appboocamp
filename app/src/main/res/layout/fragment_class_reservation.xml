@@ -67,8 +67,7 @@
             <Spinner
                 android:id="@+id/selectmorning"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:entries="@array/strmorning" />
+                android:layout_height="wrap_content" />
         </TableRow>
 
         <TableRow
@@ -89,8 +88,7 @@
             <Spinner
                 android:id="@+id/selectheven"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:entries="@array/streven" />
+                android:layout_height="wrap_content" />
         </TableRow>
 
     </TableLayout>

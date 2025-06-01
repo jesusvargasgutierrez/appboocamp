@@ -1,23 +1,16 @@
 package com.example.countryapp.Api;
 import com.example.countryapp.Request.ApiResponse;
+import com.example.countryapp.data.model.Courts;
+import com.example.countryapp.data.model.ScheduleRequest;
+import com.example.countryapp.data.model.Schedules;
 import com.example.countryapp.data.model.Subjects;
 
 import java.util.List;
 
-import javax.security.auth.Subject;
-
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.DELETE;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-import retrofit2.http.Part;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface WebServiceApi {
@@ -26,4 +19,20 @@ public interface WebServiceApi {
             @Query("_token") String _token,
             @Query("EndpointName") String EndpointName
     );
+
+    @GET("listrecord")
+    Call<List<Courts>> getcourts(
+            @Query("_token") String _token,
+            @Query("EndpointName") String EndpointName
+    );
+
+    @GET("getrecordwhere")
+    Call<ApiResponse> getschedules(
+            @Query("_token") String _token,
+            @Query("EndpointName") String EndpointName,
+            @Query("where") String where
+    );
+
+    /*@POST("getrecordwhere")
+    Call<ApiResponse> getschedules(@Body ScheduleRequest request);*/
 }

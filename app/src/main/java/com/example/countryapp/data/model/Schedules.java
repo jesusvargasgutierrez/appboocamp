@@ -1,10 +1,15 @@
 package com.example.countryapp.data.model;
 
-public class Subjects {
+import com.google.gson.annotations.SerializedName;
+
+public class Schedules {
+    @SerializedName("description")
     public String description;
+
+    @SerializedName("id")
     public Integer id;
 
-    public Subjects(Integer id, String description) {
+    public Schedules(Integer id, String description) {
         this.id = id;
         this.description = description;
     }

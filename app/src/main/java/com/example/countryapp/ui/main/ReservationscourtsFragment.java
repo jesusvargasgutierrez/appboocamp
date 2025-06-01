@@ -14,11 +14,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.countryapp.R;
+import com.example.countryapp.Repositorio.GlobalRepository;
+import com.example.countryapp.data.model.Courts;
+import com.example.countryapp.data.model.Subjects;
 import com.example.countryapp.reservationscourts;
 
 import java.util.Calendar;
@@ -27,7 +32,9 @@ public class ReservationscourtsFragment extends Fragment {
 
     EditText etddate, edthour;
     Button btnfecha;
+    Spinner spncourts;
     private reservationscourtsViewModel mViewModel;
+
 
     public static ReservationscourtsFragment newInstance() {
         return new ReservationscourtsFragment();
@@ -37,7 +44,6 @@ public class ReservationscourtsFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(reservationscourtsViewModel.class);
-        // TODO: Use the ViewModel
     }
 
     @Nullable
@@ -57,6 +63,7 @@ public class ReservationscourtsFragment extends Fragment {
     public void init(View view){
         etddate = view.findViewById(R.id.etddate);
         edthour = view.findViewById(R.id.edthour);
+        spncourts = view.findViewById(R.id.selectcourts);
     }
 
     public void actionscontrols(){
@@ -96,6 +103,23 @@ public class ReservationscourtsFragment extends Fragment {
                     }, year, month, day);
 
             datePickerDialog.show();
+        });
+
+        mViewModel = new ViewModelProvider(this).get(reservationscourtsViewModel.class);
+
+        mViewModel.getCourts("GGqO3U6lwOCdAinFWxJL0hhqeiBmKFkEWjxbRONE","court", requireContext()).observe(getViewLifecycleOwner(), courts -> {
+            if (courts != null && !courts.isEmpty()) {
+                Log.d("court", "response ready");
+                ArrayAdapter<Courts> adapter = new ArrayAdapter<>(
+                        requireContext(),
+                        android.R.layout.simple_spinner_item,
+                        courts
+                );
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spncourts.setAdapter(adapter);
+            } else {
+                Log.d("Subject", "response ready");
+            }
         });
     }
 }

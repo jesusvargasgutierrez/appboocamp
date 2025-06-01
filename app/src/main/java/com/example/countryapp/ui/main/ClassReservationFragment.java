@@ -18,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.countryapp.R;
+import com.example.countryapp.data.model.Schedules;
 import com.example.countryapp.data.model.Subjects;
 
 import java.util.List;
@@ -25,7 +26,7 @@ import java.util.List;
 public class ClassReservationFragment extends Fragment {
 
     private ClassReservationViewModel mViewModel;
-    Spinner spnsubject;
+    Spinner spnsubject, spnschedule, selectheven;
 
     public static ClassReservationFragment newInstance() {
         return new ClassReservationFragment();
@@ -36,7 +37,7 @@ public class ClassReservationFragment extends Fragment {
         super.onCreate(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(ClassReservationViewModel.class);
 
-        Toast.makeText(requireContext(),"onCreate",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(requireContext(),"onCreate",Toast.LENGTH_SHORT).show();
     }
 
     @Nullable
@@ -49,12 +50,18 @@ public class ClassReservationFragment extends Fragment {
 
     public void init(View view){
         spnsubject = view.findViewById(R.id.selecttype);
+        spnschedule = view.findViewById(R.id.selectmorning);
+        selectheven = view.findViewById(R.id.selectheven);
     }
 
     @Override
     public void onViewCreated(@NonNull View view,@Nullable Bundle savedInstanceState) {
         //Toast.makeText(requireContext(),"onViewCreated",Toast.LENGTH_SHORT).show();
         init(view);
+        actionscontrols();
+    }
+
+    public void actionscontrols(){
         mViewModel = new ViewModelProvider(this).get(ClassReservationViewModel.class);
 
         mViewModel.getSubjects("GGqO3U6lwOCdAinFWxJL0hhqeiBmKFkEWjxbRONE","subject", requireContext()).observe(getViewLifecycleOwner(), subjects -> {
@@ -71,7 +78,37 @@ public class ClassReservationFragment extends Fragment {
                 Log.d("Subject", "response ready");
             }
         });
-        //mViewModel.getSubjects("GGqO3U6lwOCdAinFWxJL0hhqeiBmKFkEWjxbRONE","subject", requireContext());
+
+        mViewModel.getSchedules("WehcDH5nlWmhUK1xQn2opiIiV0QuYYFnGcJRwKgM","schedule",1, requireContext()).observe(getViewLifecycleOwner(), schedules -> {
+            if (schedules != null && !schedules.isEmpty()) {
+                Log.d("schedules", "response ready");
+                ArrayAdapter<Schedules> adapter = new ArrayAdapter<>(
+                        requireContext(),
+                        android.R.layout.simple_spinner_item,
+                        schedules
+                );
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spnschedule.setAdapter(adapter);
+            } else {
+                Log.d("schedules", "response ready");
+            }
+        });
+
+        mViewModel.getSchedules("GGqO3U6lwOCdAinFWxJL0hhqeiBmKFkEWjxbRONE","schedule",2, requireContext()).observe(getViewLifecycleOwner(), schedules -> {
+            if (schedules != null && !schedules.isEmpty()) {
+                Log.d("Subject", "response ready");
+                ArrayAdapter<Schedules> adapter = new ArrayAdapter<>(
+                        requireContext(),
+                        android.R.layout.simple_spinner_item,
+                        schedules
+                );
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                selectheven.setAdapter(adapter);
+            } else {
+                Log.d("Subject", "response ready");
+            }
+        });
+
     }
 
 }

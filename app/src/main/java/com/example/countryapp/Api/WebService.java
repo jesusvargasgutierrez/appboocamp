@@ -1,4 +1,6 @@
 package com.example.countryapp.Api;
+import android.util.Log;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -12,7 +14,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class WebService {
-    private static final String BASE_URL = "https://72e7-177-236-39-117.ngrok-free.app/ws/";
+    private static final String BASE_URL = "https://42cb-177-236-40-67.ngrok-free.app/ws/";
     private static WebService instance;
 
     private Retrofit retrofit;
@@ -27,6 +29,7 @@ public class WebService {
                     Request requestWithUserAgent = originalRequest.newBuilder()
                             .header("User-Agent", "Mozilla/5.0 (Android)")
                             .build();
+                    Log.d("CSRF", "Headers: " + requestWithUserAgent.headers().toString());
                     return chain.proceed(requestWithUserAgent);
                 })
                 .addInterceptor(httpLoggingInterceptor)

@@ -11,11 +11,16 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.countryapp.Api.WebService;
 import com.example.countryapp.Api.WebServiceApi;
 import com.example.countryapp.Request.ApiResponse;
+import com.example.countryapp.data.model.Courts;
+import com.example.countryapp.data.model.ScheduleRequest;
+import com.example.countryapp.data.model.Schedules;
 import com.example.countryapp.data.model.Subjects;
+import com.google.android.gms.common.api.Api;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.security.auth.Subject;
@@ -47,12 +52,12 @@ public class GlobalRepository {
                 if (response.isSuccessful() && response.body() != null) {
                     liveData.postValue(response.body());
                 } else {
-                    liveData.postValue(new ArrayList<>()); // vacío si falla
+                    liveData.postValue(new ArrayList<>());
                 }
             }
             @Override
             public void onFailure(Call<List<Subjects>> call, Throwable t) {
-                liveData.postValue(new ArrayList<>()); // o manejar error
+                liveData.postValue(new ArrayList<>());
             }
         });
 
@@ -72,5 +77,59 @@ public class GlobalRepository {
                 Toast.makeText(context, "Error al consultar las clases: "+ t.getMessage(), Toast.LENGTH_LONG);
             }
         });*/
+    }
+
+    public LiveData<List<Courts>> getCourts(String _token, String EndpointName, Context context){
+        MutableLiveData<List<Courts>> liveData = new MutableLiveData<>();
+
+        webServiceApi.getcourts(_token, EndpointName).enqueue(new Callback<List<Courts>>() {
+            @Override
+            public void onResponse(Call<List<Courts>> call, Response<List<Courts>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    liveData.postValue(response.body());
+                } else {
+                    liveData.postValue(new ArrayList<>());
+                }
+            }
+            @Override
+            public void onFailure(Call<List<Courts>> call, Throwable t) {
+                liveData.postValue(new ArrayList<>());
+            }
+        });
+
+        return liveData;
+    }
+
+    public LiveData<List<Schedules>> getSchedules(String _token, String EndpointName, String where, Context context) {
+        MutableLiveData<List<Schedules>> liveData = new MutableLiveData<>();
+
+        webServiceApi.getschedules( _token, EndpointName, where).enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                Log.d("API schedule", "Código: " + response.code());
+                Log.d("API schedule", "Cuerpo: " + response.errorBody());
+
+                if (response.isSuccessful()) {
+                    Log.d("API schedule", "recibido");
+                    liveData.postValue(response.body().getInformation());
+                } else {
+                    Log.d("API schedule", "no Recibidos");
+                    try {
+                        String errorMsg = response.errorBody() != null ? response.errorBody().string() : "Cuerpo vacío";
+                        Log.e("API_ERROR", "Código: " + response.code() + "\nError: " + errorMsg);
+                    } catch (IOException e) {
+                        Log.e("API_ERROR", "Error al leer el errorBody: " + e.getMessage());
+                    }
+                    liveData.postValue(Collections.emptyList());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                liveData.postValue(Collections.emptyList());
+            }
+        });
+
+        return liveData;
     }
 }

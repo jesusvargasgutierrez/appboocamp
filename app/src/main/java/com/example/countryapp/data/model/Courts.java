@@ -1,10 +1,10 @@
 package com.example.countryapp.data.model;
 
-public class Subjects {
+public class Courts {
     public String description;
     public Integer id;
 
-    public Subjects(Integer id, String description) {
+    public Courts(Integer id, String description) {
         this.id = id;
         this.description = description;
     }
