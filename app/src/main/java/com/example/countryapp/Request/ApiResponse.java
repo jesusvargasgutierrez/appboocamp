@@ -1,8 +1,10 @@
 package com.example.countryapp.Request;
 
 public class ApiResponse {
-    private boolean success;
+    public boolean success;
     private String message;
+
+    public String error;
 
     public boolean isSuccess() {
         return success;

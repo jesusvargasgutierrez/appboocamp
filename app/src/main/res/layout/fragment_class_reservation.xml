@@ -45,8 +45,7 @@
             <Spinner
                 android:id="@+id/selecttype"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:entries="@array/strtypesclass" />
+                android:layout_height="wrap_content" />
         </TableRow>
 
         <TableRow

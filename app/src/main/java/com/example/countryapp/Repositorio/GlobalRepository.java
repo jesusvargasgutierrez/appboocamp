@@ -15,6 +15,7 @@ import com.example.countryapp.data.model.Subjects;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.security.auth.Subject;
@@ -35,24 +36,28 @@ public class GlobalRepository {
         webServiceApi = WebService.getInstance().createService();
     }
 
-    public void getSubjects(String _token, String EndpointName, Context context){
-        Call<List<Subjects>> call = webServiceApi.getsubjects(_token,EndpointName);
-        call.enqueue(new Callback<List<Subjects>>() {
+    public LiveData<List<Subjects>> getSubjects(String _token, String EndpointName, Context context){
+        //Call<List<Subjects>> call = webServiceApi.getsubjects(_token,EndpointName);
+
+        MutableLiveData<List<Subjects>> liveData = new MutableLiveData<>();
+
+        webServiceApi.getsubjects(_token, EndpointName).enqueue(new Callback<List<Subjects>>() {
             @Override
             public void onResponse(Call<List<Subjects>> call, Response<List<Subjects>> response) {
-                if(response.isSuccessful() && response.body() != null){
-                    Toast.makeText(context, "Listar", Toast.LENGTH_LONG);
-                }else{
-                    Toast.makeText(context, "Error", Toast.LENGTH_LONG);
-                    //callback.OnError(new Exception("Error en la respuesta del servidor"));
+                if (response.isSuccessful() && response.body() != null) {
+                    liveData.postValue(response.body());
+                } else {
+                    liveData.postValue(new ArrayList<>()); // vacío si falla
                 }
             }
-
             @Override
             public void onFailure(Call<List<Subjects>> call, Throwable t) {
-                Log.e("Error: ", t.getMessage());
+                liveData.postValue(new ArrayList<>()); // o manejar error
             }
         });
+
+        return liveData;
+
         /*call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {

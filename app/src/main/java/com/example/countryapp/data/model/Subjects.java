@@ -4,7 +4,10 @@ public class Subjects {
     public String description;
     public Integer id;
 
-    public Subjects(){ }
+    public Subjects(Integer id, String description) {
+        this.id = id;
+        this.description = description;
+    }
 
     public Integer getid(){
         return  id;
@@ -14,6 +17,11 @@ public class Subjects {
 
     public String getDescription(){
         return  description;
+    }
+
+    @Override
+    public String toString() {
+        return description; // Esto es lo que se muestra en el Spinner
     }
 
     public void setDescription(String description){ this.description = description; }

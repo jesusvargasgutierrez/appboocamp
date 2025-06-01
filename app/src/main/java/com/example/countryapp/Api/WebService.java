@@ -12,7 +12,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class WebService {
-    private static final String BASE_URL = "https://e8c1-177-236-39-117.ngrok-free.app/ws/";
+    private static final String BASE_URL = "https://72e7-177-236-39-117.ngrok-free.app/ws/";
     private static WebService instance;
 
     private Retrofit retrofit;
