@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/homefragment"
+    android:background="@android:color/black"
     tools:context=".ui.home.HomeFragment">
 
     <TableLayout
@@ -30,20 +31,20 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/greenclub"
                 android:paddingTop="32dp"
-                android:src="@drawable/ic_launcher_foreground" />
+                android:src="@drawable/btncalendar" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="match_parent">
 
             <ImageButton
                 android:id="@+id/btnranking"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:paddingTop="32dp"
                 android:backgroundTint="@color/greenclub"
-                android:src="@drawable/ic_menu_gallery" />
+                android:src="@drawable/btnranking" />
 
             <ImageButton
                 android:id="@+id/btnmatchgames"
@@ -51,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="32dp"
                 android:backgroundTint="@color/greenclub"
-                android:src="@drawable/ic_menu_gallery" />
+                android:src="@drawable/btngames" />
         </TableRow>
 
         <TableRow
@@ -64,7 +65,7 @@
                 android:layout_height="fill_parent"
                 android:paddingTop="32dp"
                 android:backgroundTint="@color/greenclub"
-                android:src="@drawable/ic_menu_gallery" />
+                android:src="@drawable/btneventico" />
 
             <ImageButton
                 android:id="@+id/btncontact"
@@ -72,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="32dp"
                 android:backgroundTint="@color/greenclub"
-                android:src="@drawable/ic_menu_gallery" />
+                android:src="@drawable/btncontactico" />
         </TableRow>
 
     </TableLayout>

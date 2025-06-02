@@ -23,7 +23,8 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:backgroundTint="@color/white"
-                android:text="RESERVACIÓN DE CLASES" />
+                android:text="RESERVACIÓN DE CLASES"
+                android:layout_marginBottom="30dp" />
         </TableRow>
 
         <TableRow
@@ -34,7 +35,7 @@
                 android:id="@+id/txttype"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
+                android:padding="10dp"
                 android:text="Tipo de clase" />
         </TableRow>
 
@@ -45,7 +46,9 @@
             <Spinner
                 android:id="@+id/selecttype"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_marginBottom="30dp"/>
         </TableRow>
 
         <TableRow
@@ -56,7 +59,8 @@
                 android:id="@+id/txtvmorning"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Matutino" />
+                android:text="Matutino"
+                android:padding="10dp" />
 
         </TableRow>
 
@@ -67,7 +71,9 @@
             <Spinner
                 android:id="@+id/selectmorning"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_marginBottom="30dp" />
         </TableRow>
 
         <TableRow
@@ -78,7 +84,8 @@
                 android:id="@+id/txtveven"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Vespertino" />
+                android:text="Vespertino"
+                android:padding="10dp" />
         </TableRow>
 
         <TableRow
@@ -88,7 +95,8 @@
             <Spinner
                 android:id="@+id/selectheven"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:padding="10dp" />
         </TableRow>
 
     </TableLayout>

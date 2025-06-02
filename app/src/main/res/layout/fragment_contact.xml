@@ -23,6 +23,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:backgroundTint="@color/white"
+                android:layout_marginBottom="10dp"
                 android:text="CONTACTO" />
         </TableRow>
 
@@ -39,7 +40,9 @@
                 android:inputType="textMultiLine"
                 android:background="@color/white"
                 android:padding="10dp"
+                android:textColor="@color/black"
                 android:layout_margin="10dp"
+                android:layout_marginBottom="15dp"
                 android:text="Recepcion \n +52 6141234567 EXT 101 \n +52 6141234567" />
         </TableRow>
 
@@ -57,6 +60,7 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:layout_margin="10dp"
+                android:textColor="@color/black"
                 android:text="Recepcion \n +52 6141234567 EXT 101 \n +52 6141234567" />
         </TableRow>
 
