@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -24,7 +25,10 @@ import com.example.countryapp.R;
 import com.example.countryapp.databinding.FragmentHomeBinding;
 import com.example.countryapp.ui.contact.ContactFragment;
 import com.example.countryapp.ui.main.ClassReservationFragment;
+import com.example.countryapp.ui.main.RankingFragment;
 import com.example.countryapp.ui.main.ReservationscourtsFragment;
+import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 
 public class HomeFragment extends Fragment {
 
@@ -71,6 +75,18 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        btnranking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                fragmentTransaction.replace(R.id.homefragment, new RankingFragment());
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
+
         btncontact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,6 +104,7 @@ public class HomeFragment extends Fragment {
         btnhours = view.findViewById(R.id.btnhours);
         btnreservation = view.findViewById(R.id.btnreservations);
         btncontact = view.findViewById(R.id.btncontact);
+        btnranking = view.findViewById(R.id.btnranking);
     }
 
     @Override

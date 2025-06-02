@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/degradateapp"
     android:id="@+id/homefragment"
     tools:context=".ui.home.HomeFragment">
 
@@ -21,17 +20,17 @@
                 android:id="@+id/btnhours"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:paddingTop="32dp"
                 android:backgroundTint="@color/greenclub"
-                android:src="@drawable/ic_menu_gallery" />
+                android:paddingTop="32dp"
+                android:src="@drawable/btnhours" />
 
             <ImageButton
                 android:id="@+id/btnreservations"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="32dp"
                 android:backgroundTint="@color/greenclub"
-                android:src="@drawable/ic_menu_gallery" />
+                android:paddingTop="32dp"
+                android:src="@drawable/ic_launcher_foreground" />
         </TableRow>
 
         <TableRow
