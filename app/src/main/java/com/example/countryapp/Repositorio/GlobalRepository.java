@@ -10,8 +10,10 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.countryapp.Api.WebService;
 import com.example.countryapp.Api.WebServiceApi;
+import com.example.countryapp.Request.ApiResonseRanking;
 import com.example.countryapp.Request.ApiResponse;
 import com.example.countryapp.data.model.Courts;
+import com.example.countryapp.data.model.Rankings;
 import com.example.countryapp.data.model.ScheduleRequest;
 import com.example.countryapp.data.model.Schedules;
 import com.example.countryapp.data.model.Subjects;
@@ -49,6 +51,8 @@ public class GlobalRepository {
         webServiceApi.getsubjects(_token, EndpointName).enqueue(new Callback<List<Subjects>>() {
             @Override
             public void onResponse(Call<List<Subjects>> call, Response<List<Subjects>> response) {
+                Log.d("API subject", "Código: " + response.code());
+                Log.d("API subject", "Cuerpo: " + response.errorBody());
                 if (response.isSuccessful() && response.body() != null) {
                     liveData.postValue(response.body());
                 } else {
@@ -57,6 +61,7 @@ public class GlobalRepository {
             }
             @Override
             public void onFailure(Call<List<Subjects>> call, Throwable t) {
+                Log.d("API subjectfail", "Cuerpo: " + t.getMessage());
                 liveData.postValue(new ArrayList<>());
             }
         });
@@ -126,6 +131,37 @@ public class GlobalRepository {
 
             @Override
             public void onFailure(Call<ApiResponse> call, Throwable t) {
+                liveData.postValue(Collections.emptyList());
+            }
+        });
+
+        return liveData;
+    }
+
+    public LiveData<List<Rankings>> getRankings(String _token, String EndpointName, String where, Context context) {
+        MutableLiveData<List<Rankings>> liveData = new MutableLiveData<>();
+
+        webServiceApi.getrankings( _token, EndpointName, where).enqueue(new Callback<ApiResonseRanking>() {
+            @Override
+            public void onResponse(Call<ApiResonseRanking> call, Response<ApiResonseRanking> response) {
+                Log.d("API ranking", "Código: " + response.code());
+                Log.d("API ranking", "Cuerpo: " + response.errorBody());
+                if (response.isSuccessful()) {
+                    liveData.postValue(response.body().getInformation());
+                    Log.d("API ranking", "Cuerpo ok: " + response.body().getInformation());
+                } else {
+                    try {
+                        String errorMsg = response.errorBody() != null ? response.errorBody().string() : "Cuerpo vacío";
+                        Log.e("API_ERROR", "Código: " + response.code() + "\nError: " + errorMsg);
+                    } catch (IOException e) {
+                        Log.e("API_ERROR", "Error al leer el errorBody: " + e.getMessage());
+                    }
+                    liveData.postValue(Collections.emptyList());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResonseRanking> call, Throwable t) {
                 liveData.postValue(Collections.emptyList());
             }
         });

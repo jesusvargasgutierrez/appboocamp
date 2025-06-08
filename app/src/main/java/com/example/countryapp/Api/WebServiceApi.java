@@ -1,4 +1,5 @@
 package com.example.countryapp.Api;
+import com.example.countryapp.Request.ApiResonseRanking;
 import com.example.countryapp.Request.ApiResponse;
 import com.example.countryapp.data.model.Courts;
 import com.example.countryapp.data.model.ScheduleRequest;
@@ -28,6 +29,13 @@ public interface WebServiceApi {
 
     @GET("getrecordwhere")
     Call<ApiResponse> getschedules(
+            @Query("_token") String _token,
+            @Query("EndpointName") String EndpointName,
+            @Query("where") String where
+    );
+
+    @GET("getrecordwhere")
+    Call<ApiResonseRanking> getrankings(
             @Query("_token") String _token,
             @Query("EndpointName") String EndpointName,
             @Query("where") String where
