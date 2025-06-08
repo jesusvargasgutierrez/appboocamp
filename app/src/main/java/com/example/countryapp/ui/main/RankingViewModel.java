@@ -22,9 +22,9 @@ public class RankingViewModel extends ViewModel {
 
     private MutableLiveData<String> errorLiveData;
 
-    public LiveData<List<Rankings>> getRankings(){
+    /*public LiveData<List<Rankings>> getRankings(){
         return mutableLiveData;
-    }
+    }*/
 
     public LiveData<String> getError(){
         return errorLiveData;

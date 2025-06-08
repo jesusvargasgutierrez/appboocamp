@@ -88,22 +88,19 @@ public class RankingFragment extends Fragment {
 
     private void setupViewModel(){
         mViewModel = new RankingViewModel();
-        mViewModel.getRankings().observe(getViewLifecycleOwner(), new Observer<List<Rankings>>() {
-            @Override
-            public void onChanged(List<Rankings> gitHubUsers) {
-                Log.d("rankingchanged", gitHubUsers.size()+"");
-                rankingAdapter.setData(gitHubUsers);
+        mViewModel.getRankings("GGqO3U6lwOCdAinFWxJL0hhqeiBmKFkEWjxbRONE","rankings", 1,requireContext()).observe(getViewLifecycleOwner(), rankings -> {
+            if (rankings != null) {
+                Log.d("rankingchanged", "Tamaño: " + rankings.size());
+                for (Rankings r : rankings) {
+                    Log.d("rankingitem", " -> " + r.getdescription() + " (" + r.getposition() + ")");
+                }
+                rankingAdapter.setData(rankings);
+            } else {
+                Log.d("rankingchanged", "LiveData vino null");
             }
         });
 
-        mViewModel.getError().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                Log.d("rankingslist", "ranking fail");
-            }
-        });
-
-        mViewModel.getRankings("GGqO3U6lwOCdAinFWxJL0hhqeiBmKFkEWjxbRONE","rankings", 1,requireContext());
+        //mViewModel.getRankings("GGqO3U6lwOCdAinFWxJL0hhqeiBmKFkEWjxbRONE","rankings", 1,requireContext());
     }
 
 }
