@@ -3,6 +3,7 @@ package com.example.countryapp.ui.main;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -27,6 +29,7 @@ public class ClassReservationFragment extends Fragment {
 
     private ClassReservationViewModel mViewModel;
     Spinner spnsubject, spnschedule, selectheven;
+    private Button btnsave;
 
     public static ClassReservationFragment newInstance() {
         return new ClassReservationFragment();
@@ -52,6 +55,7 @@ public class ClassReservationFragment extends Fragment {
         spnsubject = view.findViewById(R.id.selecttype);
         spnschedule = view.findViewById(R.id.selectmorning);
         selectheven = view.findViewById(R.id.selectheven);
+        btnsave = view.findViewById(R.id.btnsave);
     }
 
     @Override
@@ -109,6 +113,21 @@ public class ClassReservationFragment extends Fragment {
             }
         });
 
+        btnsave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Subjects classtype = (Subjects) spnsubject.getSelectedItem();
+                Schedules scheduleopcmat = (Schedules) spnschedule.getSelectedItem();
+                Schedules scheduleopcvesp = (Schedules) spnschedule.getSelectedItem();
+
+                String msg = "Valor seleccionado para clase: "+String.valueOf(classtype.getId())
+                              + "\n" + " horario matutino: "+String.valueOf(scheduleopcmat.getid())
+                             + "\n" + " horario vespertino: "+String.valueOf(scheduleopcvesp.getid());
+
+                Toast.makeText(requireContext(),msg,Toast.LENGTH_LONG).show();
+
+            }
+        });
     }
 
 }

@@ -31,9 +31,9 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.Reposito
     public void onBindViewHolder(@NonNull RankingAdapter.RepositoryViewHolder holder, int position) {
         Rankings item = rankings.get(position);
 
-        holder.txtPosition.setText(String.valueOf(position + 1));
-        holder.txtName.setText(item.getdescription());      // Asegúrate que Rankings tiene getNombre()
-        //holder.txtSubject.setText(item.getposition());   // Asegúrate que Rankings tiene getPuntos()
+        holder.txtPosition.setText("Posicion ranking: "+String.valueOf(item.getid()));
+        holder.txtName.setText("Nombre: "+item.getplayername());
+        holder.txtSubject.setText("Puntaje: "+String.valueOf(item.getid()));
     }
 
     @Override

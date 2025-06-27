@@ -1,12 +1,12 @@
 package com.example.countryapp.data.model;
 
 public class Rankings {
-    public String description;
+    public String player_name;
     public Integer id, position;
 
-    public Rankings(Integer id, String description, Integer position) {
+    public Rankings(Integer id, String player_name, Integer position) {
         this.id = id;
-        this.description = description;
+        this.player_name = player_name;
         this.position = position;
     }
 
@@ -14,22 +14,16 @@ public class Rankings {
         return  id;
     }
 
-    public void setid(Integer id){ this.id = id; }
-
     public Integer getposition(){
         return  position;
     }
 
-    public void setposition(Integer position){ this.position = position; }
-
-    public String getdescription(){
-        return  description;
+    public String getplayername(){
+        return  player_name;
     }
 
     @Override
     public String toString() {
-        return description;
+        return player_name;
     }
-
-    public void setdescription(String description){ this.description = description; }
 }

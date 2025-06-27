@@ -9,7 +9,7 @@ public class Subjects {
         this.description = description;
     }
 
-    public Integer getid(){
+    public Integer getId(){
         return  id;
     }
 

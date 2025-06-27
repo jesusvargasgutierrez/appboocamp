@@ -52,7 +52,7 @@ public class RankingFragment extends Fragment {
     }
 
     public void init(View view){
-        //spnsubject = view.findViewById(R.id.selecttype);
+        spnsubject = view.findViewById(R.id.selecttype);
         recyclerViewUsers = view.findViewById(R.id.recyclerranking);
         recyclerViewUsers.setLayoutManager(new LinearLayoutManager(requireContext()));
         rankingAdapter = new RankingAdapter(new ArrayList<>());
@@ -63,7 +63,7 @@ public class RankingFragment extends Fragment {
     public void onViewCreated(@NonNull View view,@Nullable Bundle savedInstanceState) {
         //Toast.makeText(requireContext(),"onViewCreated",Toast.LENGTH_SHORT).show();
         init(view);
-        //actionscontrols();
+        actionscontrols();
         setupViewModel();
     }
 
@@ -92,7 +92,7 @@ public class RankingFragment extends Fragment {
             if (rankings != null) {
                 Log.d("rankingchanged", "Tamaño: " + rankings.size());
                 for (Rankings r : rankings) {
-                    Log.d("rankingitem", " -> " + r.getdescription() + " (" + r.getposition() + ")");
+                    Log.d("rankingitem", " -> " + r.getplayername() + " (" + r.getposition() + ")");
                 }
                 rankingAdapter.setData(rankings);
             } else {
