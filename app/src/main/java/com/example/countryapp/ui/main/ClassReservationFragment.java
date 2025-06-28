@@ -20,6 +20,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.countryapp.R;
+import com.example.countryapp.data.model.ReservationClass;
 import com.example.countryapp.data.model.Schedules;
 import com.example.countryapp.data.model.Subjects;
 
@@ -120,11 +121,21 @@ public class ClassReservationFragment extends Fragment {
                 Schedules scheduleopcmat = (Schedules) spnschedule.getSelectedItem();
                 Schedules scheduleopcvesp = (Schedules) spnschedule.getSelectedItem();
 
-                String msg = "Valor seleccionado para clase: "+String.valueOf(classtype.getId())
-                              + "\n" + " horario matutino: "+String.valueOf(scheduleopcmat.getid())
-                             + "\n" + " horario vespertino: "+String.valueOf(scheduleopcvesp.getid());
+                ReservationClass classreservation = new ReservationClass();
+                classreservation.EndpointName = "classreservation";
+                classreservation.id_reservation = 1;
+                classreservation.id_classtype = classtype.getId();
+                classreservation.class_type = classtype.getDescription();
+                classreservation.id_schedulemat = scheduleopcmat.getid();
+                classreservation.schedule_mat = scheduleopcmat.getDescription();
+                classreservation.id_schedulevesp = scheduleopcvesp.getid();
+                classreservation.schedule_vesp = scheduleopcvesp.getDescription();
+                classreservation.id_user = 1;
+                classreservation.username = "username";
 
-                Toast.makeText(requireContext(),msg,Toast.LENGTH_LONG).show();
+                mViewModel.InsertReservation(classreservation);
+
+                Toast.makeText(requireContext(),"Reservacion realizada con exito!",Toast.LENGTH_LONG).show();
 
             }
         });

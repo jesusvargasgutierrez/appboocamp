@@ -11,6 +11,7 @@ import java.util.List;
 
 import com.example.countryapp.Repositorio.GlobalRepository;
 import com.example.countryapp.Request.ApiResponse;
+import com.example.countryapp.data.model.ReservationClass;
 import com.example.countryapp.data.model.ScheduleRequest;
 import com.example.countryapp.data.model.Schedules;
 import com.example.countryapp.data.model.Subjects;
@@ -29,6 +30,10 @@ public class ClassReservationViewModel extends ViewModel {
 
     public LiveData<List<Subjects>> getSubjects(String _token, String EndpointName, Context context){
         return globalRepository.getSubjects(_token, EndpointName, context);
+    }
+
+    public void InsertReservation(ReservationClass classreservation){
+        globalRepository.insertreservation(classreservation);
     }
 
     public LiveData<List<Schedules>> getSchedules(String _token, String EndpointName, Integer where, Context context){
