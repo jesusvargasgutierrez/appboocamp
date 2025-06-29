@@ -1,6 +1,7 @@
 package com.example.countryapp.Api;
 import com.example.countryapp.Request.ApiResonseRanking;
 import com.example.countryapp.Request.ApiResponse;
+import com.example.countryapp.data.model.CourtReservation;
 import com.example.countryapp.data.model.Courts;
 import com.example.countryapp.data.model.ReservationClass;
 import com.example.countryapp.data.model.ScheduleRequest;
@@ -44,6 +45,9 @@ public interface WebServiceApi {
 
     @POST("insertrecord")
     Call<ApiResponse> insertrecordclass(@Body ReservationClass request);
+
+    @POST("insertrecord")
+    Call<ApiResponse> insrdreservationcourts(@Body CourtReservation request);
 
     /*@POST("getrecordwhere")
     Call<ApiResponse> getschedules(@Body ScheduleRequest request);*/

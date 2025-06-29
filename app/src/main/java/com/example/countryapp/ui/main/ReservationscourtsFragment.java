@@ -22,7 +22,10 @@ import android.widget.Toast;
 
 import com.example.countryapp.R;
 import com.example.countryapp.Repositorio.GlobalRepository;
+import com.example.countryapp.data.model.CourtReservation;
 import com.example.countryapp.data.model.Courts;
+import com.example.countryapp.data.model.ReservationClass;
+import com.example.countryapp.data.model.Schedules;
 import com.example.countryapp.data.model.Subjects;
 import com.example.countryapp.reservationscourts;
 
@@ -31,7 +34,7 @@ import java.util.Calendar;
 public class ReservationscourtsFragment extends Fragment {
 
     EditText etddate, edthour;
-    Button btnfecha;
+    Button btnfecha,btnsave;
     Spinner spncourts;
     private reservationscourtsViewModel mViewModel;
 
@@ -64,6 +67,7 @@ public class ReservationscourtsFragment extends Fragment {
         etddate = view.findViewById(R.id.etddate);
         edthour = view.findViewById(R.id.edthour);
         spncourts = view.findViewById(R.id.selectcourts);
+        btnsave = view.findViewById(R.id.btnsave);
     }
 
     public void actionscontrols(){
@@ -119,6 +123,28 @@ public class ReservationscourtsFragment extends Fragment {
                 spncourts.setAdapter(adapter);
             } else {
                 Log.d("Subject", "response ready");
+            }
+        });
+
+        btnsave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Courts court = (Courts) spncourts.getSelectedItem();
+
+                CourtReservation courtreservation = new CourtReservation();
+                courtreservation.EndpointName = "courtsreservation";
+                courtreservation.id_court_reservation = 1;
+                courtreservation.id_court = court.getid();
+                courtreservation.court_name = court.getDescription();
+                courtreservation.date_reservation = String.valueOf(etddate.getText());
+                courtreservation.hour_reservation = String.valueOf(edthour.getText());
+                courtreservation.id_user = 1;
+                courtreservation.username = "username";
+
+                mViewModel.InsertReservation(courtreservation);
+
+                Toast.makeText(requireContext(),"Reservacion realizada con exito!",Toast.LENGTH_LONG).show();
+
             }
         });
     }

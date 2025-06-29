@@ -12,6 +12,7 @@ import com.example.countryapp.Api.WebService;
 import com.example.countryapp.Api.WebServiceApi;
 import com.example.countryapp.Request.ApiResonseRanking;
 import com.example.countryapp.Request.ApiResponse;
+import com.example.countryapp.data.model.CourtReservation;
 import com.example.countryapp.data.model.Courts;
 import com.example.countryapp.data.model.Rankings;
 import com.example.countryapp.data.model.ReservationClass;
@@ -174,16 +175,41 @@ public class GlobalRepository {
         webServiceApi.insertrecordclass(classreservation).enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
-                Log.d("API insert", "Código: " + response.code());
-                Log.d("API insert", "Cuerpo: " + response.errorBody());
+                //Log.d("API insert", "Código: " + response.code());
+                //Log.d("API insert", "Cuerpo: " + response.errorBody());
                 if (response.isSuccessful()) {
-                    Log.d("API insert", "Cuerpo ok: " + response.body().getInformation());
+                    //Log.d("API insert", "Cuerpo ok: " + response.body().getInformation());
                 } else {
                     try {
                         String errorMsg = response.errorBody() != null ? response.errorBody().string() : "Cuerpo vacío";
-                        Log.e("API_ERROR", "Código: " + response.code() + "\nError: " + errorMsg);
+                        //Log.e("API_ERROR", "Código: " + response.code() + "\nError: " + errorMsg);
                     } catch (IOException e) {
-                        Log.e("API_ERROR", "Error al leer el errorBody: " + e.getMessage());
+                        //Log.e("API_ERROR", "Error al leer el errorBody: " + e.getMessage());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void insertreservationcourts(CourtReservation courtreservation) {
+        webServiceApi.insrdreservationcourts(courtreservation).enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                //Log.d("API insert", "Código: " + response.code());
+                //Log.d("API insert", "Cuerpo: " + response.errorBody());
+                if (response.isSuccessful()) {
+                    //Log.d("API insert", "Cuerpo ok: " + response.body().getInformation());
+                } else {
+                    try {
+                        String errorMsg = response.errorBody() != null ? response.errorBody().string() : "Cuerpo vacío";
+                        //Log.e("API_ERROR", "Código: " + response.code() + "\nError: " + errorMsg);
+                    } catch (IOException e) {
+                        //Log.e("API_ERROR", "Error al leer el errorBody: " + e.getMessage());
                     }
                 }
             }

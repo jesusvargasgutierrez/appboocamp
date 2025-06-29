@@ -9,7 +9,17 @@ public class CourtReservation {
     public Integer id_user;
     public String username;
 
-    public CourtReservation(Integer id_court_reservation, Integer id_court, String court_name, String date_reservation, String hour_reservation, Integer id_user, String username) {
+    public String getEndpointName() {
+        return EndpointName;
+    }
+
+    public void setEndpointName(String endpointName) {
+        EndpointName = endpointName;
+    }
+
+    public String EndpointName;
+
+    /*public CourtReservation(Integer id_court_reservation, Integer id_court, String court_name, String date_reservation, String hour_reservation, Integer id_user, String username) {
         this.id_court_reservation = id_court_reservation;
         this.id_court = id_court;
         this.court_name = court_name;
@@ -17,7 +27,7 @@ public class CourtReservation {
         this.hour_reservation = hour_reservation;
         this.id_user = id_user;
         this.username = username;
-    }
+    }*/
 
     public Integer getId_court_reservation() {
         return id_court_reservation;
